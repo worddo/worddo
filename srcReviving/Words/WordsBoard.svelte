@@ -1,0 +1,103 @@
+<script>
+  import { onMount } from "svelte";
+  import { AnsList, CusList, resWord, reswholekey } from "../store";
+  export let words,means,sort
+  let finalresult
+    onMount(()=>{
+        
+//algorith for pick words
+    //answer
+    AnsList.update((value)=>{
+        
+        return [...value,words]
+    })
+
+    console.log("valueeeee",$AnsList)
+
+    let r = document.createElement('input')
+    r.style.cssText = `    background-color: rgb(238, 238, 238);
+    width: 50%;
+    border-radius: 1vh;
+    font-size: 6vh;
+    font-weight: bold;
+    padding: 1vh;
+    color:#333333;
+    text-align: center;`
+    r.id = 'inputWords'+`${sort}`
+    r.maxLenght = words.length
+    r.setAttribute('autocomplete','off')
+    r.setAttribute('spellcheck','false')
+    //finalresult = `${r.outerHTML} (${parts}) ${means}`
+   
+    
+    
+    document.getElementById('furword'+`${sort}`).innerHTML = r.outerHTML
+ 
+    document.getElementById('furmean'+`${sort}`).innerHTML = means
+
+    }
+
+
+    
+   
+    )    
+    
+</script>
+<div class = 'containWordsBoard'>
+    <div class = 'titleQues' id = {"QuesWord"+`${sort}`}>
+        <div class = 'containfuture' id = {'furword'+`${sort}`}></div>
+        
+        <div class = 'containfuture' id = {'furmean'+`${sort}`}></div></div>
+
+</div>
+
+<style>
+ .containfuture{
+    color:#333333;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    line-height: 8vh;
+    line-break: auto;
+    margin: 1vh;
+    font-size: 6vh;
+    word-wrap: break-word;
+    white-space: pre-line;
+    justify-content: center;
+    text-align: center;
+    }
+    .containWordsBoard{
+        position: relative;
+    width: 100vw;
+    height: 100%;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    }
+
+    .titleQues{
+        position: absolute;
+    top: 50%;
+    transform:translate(0,-50%);
+    width: 90%;
+    background-color: transparent;
+    font-size: 6vh;
+    font-family: monospace;
+    font-weight: bold;
+    display: flex;
+    line-break: auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    white-space: pre;
+}
+    
+
+
+ 
+</style>
